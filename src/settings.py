@@ -21,7 +21,7 @@ HIDE_DATASET = True  # set False when 100% sure about repo quality
 # * After uploading to instance ##
 ##################################
 LICENSE: License = License.BSD_3_Clause()
-APPLICATIONS: List[Union[Industry, Domain, Research]] = [Domain.General()]
+APPLICATIONS: List[Union[Industry, Domain, Research]] = [Domain.OCR()]
 CATEGORY: Category = Category.General()
 
 CV_TASKS: List[CVTask] = [CVTask.InstanceSegmentation(),CVTask.SemanticSegmentation(),CVTask.ObjectDetection()]
@@ -63,7 +63,7 @@ ORGANIZATION_NAME: Optional[Union[str, List[str]]] = ["University of Malaya, Mal
 ORGANIZATION_URL: Optional[Union[str, List[str]]] = ["https://www.um.edu.my/"]
 
 # Set '__PRETEXT__' or '__POSTTEXT__' as a key with string value to add custom text. e.g. SLYTAGSPLIT = {'__POSTTEXT__':'some text}
-SLYTAGSPLIT: Optional[Dict[str, Union[List[str], str]]] = {"__POSTTEXT__":"Also the dataset includes ***text*** tag"}
+SLYTAGSPLIT: Optional[Dict[str, Union[List[str], str]]] = {"__POSTTEXT__":"Also the dataset includes ***text*** object tag. Explore them in supervisely advanced labeling tool"}
 TAGS: Optional[List[str]] = None
 
 

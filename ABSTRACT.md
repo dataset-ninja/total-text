@@ -21,7 +21,7 @@ In authors' dataset collection, they found out that curved text in natural image
 
 ## Orientation diversity
 
-Approximate by half of the text instances are curved, and the other half is split almost equally between horizontal and multi-oriented. Curve text has its own variation too. Based on authors' observation, they classified them as horizontal curved, vertical curved, circular, and wavy (refer to 6a for image example). A lthough all the images were collected with curved text in mind, other orientations still occupy half of the total instances. A closer look into the dataset shows that curved text usually appears with either horizontal or multi-oriented texts. The mixture of orientations in an image, challenges text detection algorithms to achieve robustness and generalization in terms of text orientations.
+Approximate by half of the text instances are curved, and the other half is split almost equally between horizontal and multi-oriented. Curve text has its own variation too. Based on authors' observation, they classified them as horizontal curved, vertical curved, circular, and wavy (refer to 6a for image example). Although all the images were collected with curved text in mind, other orientations still occupy half of the total instances. A closer look into the dataset shows that curved text usually appears with either horizontal or multi-oriented texts. The mixture of orientations in an image, challenges text detection algorithms to achieve robustness and generalization in terms of text orientations.
 
 ## Scene diversity
 
