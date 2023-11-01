@@ -27,7 +27,7 @@ CATEGORY: Category = Category.General()
 CV_TASKS: List[CVTask] = [CVTask.InstanceSegmentation(),CVTask.SemanticSegmentation(),CVTask.ObjectDetection()]
 ANNOTATION_TYPES: List[AnnotationType] = [AnnotationType.InstanceSegmentation()]
 
-RELEASE_DATE: Optional[str] = None  # e.g. "YYYY-MM-DD"
+RELEASE_DATE: Optional[str] = "2017-10-27"  # e.g. "YYYY-MM-DD"
 if RELEASE_DATE is None:
     RELEASE_YEAR: int = None
 
