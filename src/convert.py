@@ -1,12 +1,14 @@
-import supervisely as sly
 import os
-from dataset_tools.convert import unpack_if_archive
-import src.settings as s
 from urllib.parse import unquote, urlparse
-from supervisely.io.fs import get_file_name, get_file_size
-import shutil
 
+import scipy.io
+import supervisely as sly
+from dataset_tools.convert import unpack_if_archive
+from supervisely.io.fs import file_exists, get_file_name
 from tqdm import tqdm
+
+import src.settings as s
+
 
 def download_dataset(teamfiles_dir: str) -> str:
     """Use it for large datasets to convert them on the instance"""
@@ -69,17 +71,79 @@ def count_files(path, extension):
 def convert_and_upload_supervisely_project(
     api: sly.Api, workspace_id: int, project_name: str
 ) -> sly.ProjectInfo:
-    ### Function should read local dataset and upload it to Supervisely project, then return project info.###
-    raise NotImplementedError("The converter should be implemented manually.")
+    
+    train_images_path = os.path.join("archive","totaltext","Images","Train")
+    test_images_path = os.path.join("archive","totaltext","Images","Test")
+    anns_path = os.path.join("archive","TT_new_train_GT","Train")
 
-    # dataset_path = "/local/path/to/your/dataset" # general way
-    # dataset_path = download_dataset(teamfiles_dir) # for large datasets stored on instance
+    batch_size = 30
+    images_ext = ".jpg"
+    ann_ext = ".mat"
+    ann_prefix = "gt_"
 
-    # ... some code here ...
-
-    # sly.logger.info('Deleting temporary app storage files...')
-    # shutil.rmtree(storage_dir)
-
-    # return project
+    ds_name_to_data = {"train": (train_images_path, anns_path), "test": (test_images_path, None)}
 
 
+    def create_ann(image_path):
+        labels = []
+
+        image_np = sly.imaging.image.read(image_path)[:, :, 0]
+        img_height = image_np.shape[0]
+        img_wight = image_np.shape[1]
+
+        file_name = get_file_name(image_path)
+
+        ann_path = os.path.join(anns_path, ann_prefix + file_name + ann_ext)
+        if file_exists(ann_path):
+            mat = scipy.io.loadmat(ann_path)["gt"]
+            for curr_data in mat:
+                text_value = curr_data[-2][0]
+                tag = sly.Tag(text_meta, value=text_value)
+
+                exterior = []
+
+                x_coords = curr_data[1][0]
+                y_coords = curr_data[3][0]
+
+                for x, y in zip(x_coords, y_coords):
+                    exterior.append([y, x])
+                if len(exterior) < 3:
+                    continue
+                polygon = sly.Polygon(exterior)
+                label_poly = sly.Label(polygon, obj_class, tags=[tag])
+                labels.append(label_poly)
+
+        return sly.Annotation(img_size=(img_height, img_wight), labels=labels)
+
+
+    obj_class = sly.ObjClass("text", sly.Polygon)
+    text_meta = sly.TagMeta("text", sly.TagValueType.ANY_STRING)
+    project = api.project.create(workspace_id, project_name, change_name_if_conflict=True)
+    meta = sly.ProjectMeta(obj_classes=[obj_class], tag_metas=[text_meta])
+    api.project.update_meta(project.id, meta.to_json())
+
+
+    for ds_name, ds_data in ds_name_to_data.items():
+        dataset = api.dataset.create(project.id, ds_name, change_name_if_conflict=True)
+
+        images_path, anns_path = ds_data
+
+        images_names = os.listdir(images_path)
+
+        progress = sly.Progress("Create dataset {}".format(ds_name), len(images_names))
+
+        for images_names_batch in sly.batched(images_names, batch_size=batch_size):
+            img_pathes_batch = [
+                os.path.join(images_path, image_name) for image_name in images_names_batch
+            ]
+
+            img_infos = api.image.upload_paths(dataset.id, images_names_batch, img_pathes_batch)
+            img_ids = [im_info.id for im_info in img_infos]
+
+            if anns_path is not None:
+                anns = [create_ann(image_path) for image_path in img_pathes_batch]
+                api.annotation.upload_anns(img_ids, anns)
+
+            progress.iters_done_report(len(images_names_batch))
+
+    return project
