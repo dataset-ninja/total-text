@@ -1,6 +1,6 @@
-**Total-Text** is a dataset tailored for instance segmentation, semantic segmentation, and object detection tasks, containing 1555 images with 11165 labeled objects belonging to a single class — *text* with ***text** label tag. Its primary aim is to open new research avenues in the scene text domain. Unlike traditional text datasets, Total-Text uniquely includes curved-oriented text in addition to horizontal and multi-oriented text, offering diverse text orientations in more than half of its images. This variety makes it a crucial resource for advancing text-related studies in computer vision and natural language processing.
+**Total-Text** is a dataset tailored for instance segmentation, semantic segmentation, and object detection tasks, containing 1555 images with 11165 labeled objects belonging to a single class — *text* with ***text*** label tag. Its primary aim is to open new research avenues in the scene text domain. Unlike traditional text datasets, Total-Text uniquely includes curved-oriented text in addition to horizontal and multi-oriented text, offering diverse text orientations in more than half of its images. This variety makes it a crucial resource for advancing text-related studies in computer vision and natural language processing.
 
-The effort of collecting this dataset is motivated by the missing of curved text in existing scene text datasets. Curved text can be easily found in real life scenes such as: business logos, signs,  entrances etc, surprisingly such data has close to zero existence in the current datasets. The most popular scene text dataset over the decade, [ICDARs]() have only horizontal text.
+The effort of collecting this dataset is motivated by the missing of curved text in existing scene text datasets. Curved text can be easily found in real life scenes such as: business logos, signs,  entrances etc, surprisingly such data has close to zero existence in the current datasets. The most popular scene text dataset over the decade, [ICDARs](https://ieeexplore.ieee.org/document/6628859) have only horizontal text.
 
 Authors propose Total-Text with 4,265 curved text out of 9,330 total text instances, hoping to spur an interest in the community to address curved text.
 
@@ -17,7 +17,7 @@ level.
 
 <span style="font-size: smaller; font-style: italic;">1st row: Examples from ICDAR 2013, ICDAR2015 and MSRA-TD500; 2nd row: Slightly curved to extremely curved text examples from the Total-Text.</span>
 
-In authors' dataset collection, they found out that curved text in natural images could vary from slightly curved to extremely curved. Also, it is not surprising to find that most of them are in the shape of a symmetric arc due to the [symmetrical preferences in human vision](21).
+In authors' dataset collection, they found out that curved text in natural images could vary from slightly curved to extremely curved. Also, it is not surprising to find that most of them are in the shape of a symmetric arc due to the [symmetrical preferences in human vision](https://global.oup.com/academic/product/the-science-of-social-vision-9780195333176?cc=tr&lang=en&).
 
 ## Orientation diversity
 
