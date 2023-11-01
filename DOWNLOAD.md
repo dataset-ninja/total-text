@@ -1,6 +1,6 @@
 Dataset **Total-Text** can be downloaded in [Supervisely format](https://developer.supervisely.com/api-references/supervisely-annotation-json-format):
 
- [Download](Set 'HIDE_DATASET=False' to generate download link)
+ [Download](https://assets.supervisely.com/supervisely-supervisely-assets-public/teams_storage/B/a/mQ/ZJS49kSqasqHWLuBKIg6K93QoNI7Rf6xgO3ZMJr4jioSHDVVQMJ0e03egP8gQ90WEvPcp0gpuABom8Fb3QoSATdonhQ2MnekIcSkUZY1G1oVeCXlNSY7WdH82KwN.tar)
 
 As an alternative, it can be downloaded with *dataset-tools* package:
 ``` bash
