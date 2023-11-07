@@ -43,7 +43,7 @@ GITHUB_URL: str = "https://github.com/dataset-ninja/total-text"
 ##################################
 ### * Optional after uploading ###
 ##################################
-DOWNLOAD_ORIGINAL_URL: Optional[Union[str, dict]] = ["https://drive.google.com/file/d/1bC68CzsSVTusZVvOkk7imSZSbgD1MqK2/view"]
+DOWNLOAD_ORIGINAL_URL: Optional[Union[str, dict]] = "https://drive.google.com/file/d/1bC68CzsSVTusZVvOkk7imSZSbgD1MqK2/view"
 # Optional link for downloading original dataset (e.g. "https://some.com/dataset/download")
 
 CLASS2COLOR: Optional[Dict[str, List[str]]] = None
@@ -63,7 +63,7 @@ ORGANIZATION_NAME: Optional[Union[str, List[str]]] = ["University of Malaya, Mal
 ORGANIZATION_URL: Optional[Union[str, List[str]]] = ["https://www.um.edu.my/"]
 
 # Set '__PRETEXT__' or '__POSTTEXT__' as a key with string value to add custom text. e.g. SLYTAGSPLIT = {'__POSTTEXT__':'some text}
-SLYTAGSPLIT: Optional[Dict[str, Union[List[str], str]]] = {"__POSTTEXT__":"Also the dataset includes ***text*** object tag. Explore them in supervisely advanced labeling tool"}
+SLYTAGSPLIT: Optional[Dict[str, Union[List[str], str]]] = {"__POSTTEXT__":"Also the dataset includes ***text*** object tag. Explore them in supervisely labeling tool"}
 TAGS: Optional[List[str]] = None
 
 
